@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Geocore</title>
+		<link rel="stylesheet" type="text/css" href="/templates/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/templates/css/style.css">
+		<link rel="icon" type="image/x-icon" href="/static/resources/images/favicon.ico">
+	</head>
+
+	<body>
+		<div class="container">
+		<div class="card card-container">
+			<img id="profile-img" class="profile-img-card" src="/static/resources/images/navagis.png"/>
+			<p id="profile-name" class="profile-name-card"></p>
+			<form class="form-signin" method="post" action="">
+				{% csrf_token %}
+				<span id="reauth-email" class="reauth-email">{{messageerror}}</span>
+				<input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
+				<input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+				<input class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="Login">
+			</form><!-- /form -->
+		</div><!-- /card-container -->
+		</div><!-- /container -->
+	</body>
+</html>

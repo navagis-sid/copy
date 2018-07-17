@@ -1,0 +1,18 @@
+<div class="top-nav">
+	<div class="title-panel">
+		<img src="/static/resources/images/navagis.png" class="gateway-logo"/>
+		<div class="dropdown" style="float:right;">
+			<img src="/static/resources/images/user.png" class="user-logo" data-toggle="dropdown"/>
+			<ul class="dropdown-menu action-dropdown" style="position: absolute;top: 42px;right: 10px;left: -400%;width:210px;z-index: 10000;">
+
+				<li style="border-top: 1px solid #ddd;"><span>Username: {{request.session.username}}</span></li>
+				<form method="post" action="">
+					{% csrf_token %}
+					<input type="hidden" id="logout" name="logout" value="logout"/>
+					<li><span><input type="submit" class="logoutbtn" value="Logout"></span></li>
+				</form>
+			</ul>
+		</div>
+	</div>
+	<div class="tab-panel" ng-show="false"></div>
+</div>

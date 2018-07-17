@@ -1,0 +1,29 @@
+ {% extends "base.html" %} {% block content %}
+<div id="index-container" ng-controller="indexController" class="maps-container">
+    {% include "partials/top_nav_panel.html" %}
+    <div style="width: 100%; margin-top: 10px; min-height:600px;padding: 20px;">
+        <h4 style="margin: 0px;padding-bottom:10px;">Shapefiles Uploaded</h4>
+        <div style="width:100%;height: 250px;">
+
+           <div class="selection-container" style="margin-top: 10px;padding-left:0;">
+                <div class="categorylayer-container" style="border-top: 1px solid #ddd;padding-top: 5px;height: 35px;" ng-repeat="shapefile in uploaded_shapefiles | orderBy: 'name'" ng-cloak>
+                    <div class="categorylayer-label" data-toggle="collapse" style= "border-bottom: 1px solid #ddd;" >
+                        <span><input type="text" ng-model="shapefile.name" style="background: transparent;border: 0;width: 200px;" ng-disabled="true"/></span>
+                        <span ng-show='shapefile.is_done == false'><input type="text" ng-model="shapefile.status" style="background: transparent;border: 0;width: 100px;text-align: center;" ng-disabled="true"/></span>
+                        <span ng-show='shapefile.is_done'>
+                            <button id="btn-download" type="button" class="btn btn-green" style="width: 100px;" ng-click="download_tiles(shapefile.download_link)">Download</button>
+                        </span>
+                        {%verbatim%}
+                        <label style="padding-left: 8px;font-weight: 300;font-size: 12px;float: right;padding-right: 20px;padding-top: 4px;">{{ shapefile.uploaded_date + ' , ' + shapefile.uploaded_time}}</label>
+                        {%endverbatim%}
+                    </div>
+                </div>
+                <label ng-show="showNoTerr()">No shapefile found.</label>
+            </div>
+            <button id="btn-upload-new-shapefile" type="button" class="btn btn-green" style="width: 240px;margin-top: 20px;margin-left: 8px;" ng-click="btn_uploadShapefile()">Upload Shapefile (.zip)</button>
+            <input id="upload-new-shapefile" type="file" style="display:none;" accept=".zip" custom-on-change="uploadShapefile"/>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
